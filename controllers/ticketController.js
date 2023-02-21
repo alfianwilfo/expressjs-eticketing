@@ -9,6 +9,14 @@ class TicketController {
            next(error)
         }
     }
+    static async getAllTicket(req, res, next){
+        try {
+            let allTicket = await Queue.findAll()
+            res.json(allTicket)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = TicketController

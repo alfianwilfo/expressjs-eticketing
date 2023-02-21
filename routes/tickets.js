@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let controller = require("../controllers/ticketController.js")
 
-router.post('/', controller.createTicket);
+router.get("/", controller.getAllTicket)
+.post('/', controller.createTicket);
 
 module.exports = router;
