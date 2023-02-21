@@ -1,13 +1,19 @@
 require("dotenv").config()
-let {DB_USERNAME, DB_PASSWORD} = process.env
+let { 
+      DB_USERNAME,
+      DB_PASSWORD,
+      DB_DATABASE, 
+      DB_HOST, 
+      DB_DIALECT
+    } = process.env
 
 module.exports = {
   "development": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "testing",
-    "host": "localhost",
-    "dialect": "mysql"
+    "database": DB_DATABASE,
+    "host": DB_HOST,
+    "dialect": DB_DIALECT
   },
   "test": {
     "username": "root",
