@@ -9,10 +9,22 @@ class TicketController {
            next(error)
         }
     }
+
     static async getAllTicket(req, res, next){
         try {
             let allTicket = await Queue.findAll()
             res.json(allTicket)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async updateStatusTicket(req, res, next){
+        try {
+            let { status } = req.body
+            let id = +req.params.id
+            let updateStatusTicket = await Queue.update({ status }, { where: { id } })
+            res.json({message: 'Success update status'})
         } catch (error) {
             next(error)
         }
