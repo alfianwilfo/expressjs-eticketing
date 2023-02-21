@@ -7,10 +7,14 @@ let errorHandler = (err, req, res, next) => {
             status = 400
             msg = err.errors[0].message
             break;
-    
+        case "validator":
+            status = 400
+            msg = err.msg
+            break;
         default:
             break;
     }
+    
     res.status(status).json({message: msg})
 }
 
