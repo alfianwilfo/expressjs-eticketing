@@ -25,4 +25,4 @@ module.exports = (sequelize, DataTypes) => {
   Queue.sync()
 
   return Queue;
-};
+}
