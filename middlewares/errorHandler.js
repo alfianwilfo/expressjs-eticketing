@@ -11,6 +11,10 @@ let errorHandler = (err, req, res, next) => {
             status = 400
             msg = err.msg
             break;
+        case "Forbidden":
+            status = 403
+            msg = "Invalid username or password"
+            break;
         default:
             break;
     }
