@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Queue = sequelize.define('Queue', {
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull:false,
     },
@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false,
     },
-    departement: {
+    from: {
+      type: DataTypes.STRING,
+      allowNull:false,
+    },
+    to:{
       type: DataTypes.STRING,
       allowNull:false,
     },
@@ -25,4 +29,4 @@ module.exports = (sequelize, DataTypes) => {
   Queue.sync()
 
   return Queue;
-};
+}
