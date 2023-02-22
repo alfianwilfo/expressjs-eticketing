@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false,
     },
-    departement: {
+    from: {
+      type: DataTypes.STRING,
+      allowNull:false,
+    },
+    to:{
       type: DataTypes.STRING,
       allowNull:false,
     },

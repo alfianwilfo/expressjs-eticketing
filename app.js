@@ -6,8 +6,10 @@ var logger = require('morgan');
 let errorHandler = require("./middlewares/errorHandler")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/tickets');
-
+var cors = require('cors')
 var app = express();
+ 
+app.use(cors())
 
 // view engine setup
 app.set('view engine', 'jade');

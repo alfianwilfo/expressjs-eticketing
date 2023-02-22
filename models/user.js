@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       departement: {
         type: DataTypes.STRING,
-        allowNull:false,
+        allowNull: false,
+      },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
       }
     })
 

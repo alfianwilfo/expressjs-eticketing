@@ -4,9 +4,7 @@ let validateInputCreate = (req, res, next) => {
     let validation = new Validator(
         req.body, 
         {
-            name: 'required', 
             message: 'required', 
-            departement: 'required'
         },
         {
             required: ":attribute can't empty"
@@ -17,7 +15,7 @@ let validateInputCreate = (req, res, next) => {
             next()
         },
         () => {
-          let msg = validation.errors.first('name') || validation.errors.first('message') || validation.errors.first('departement')
+          let msg = validation.errors.first('message')
           throw { name: 'validator', msg}
         });
       

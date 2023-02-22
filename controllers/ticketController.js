@@ -2,8 +2,9 @@ let { Queue } = require("../models/index")
 class TicketController {
    static async createTicket(req, res, next){
         try {
-            let {name, message, departement} = req.body
-            let createTicket = await Queue.create({name, message, departement})
+            let { username, departement } = req.user
+            let { message, to } = req.body
+            let createTicket = await Queue.create({ name: username, message, from: departement, to })
             res.status(201).json({message : 'Success create new ticket'})
         } catch (error) {
            next(error)

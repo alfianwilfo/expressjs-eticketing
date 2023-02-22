@@ -13,11 +13,9 @@ class UserController {
         let comparePassword = bcrypt.compareSync(password, findedUser.password);
         if (!comparePassword) {
             throw { name: 'Forbidden'}
-            
         }
         let token = jwt.sign({id: findedUser.id}, process.env.TOKEN_SECRET)
-        res.json({ access_token: token })
-
+        res.json({ access_token: token, admin: findedUser.admin })
         } catch (error) {
             next(error)
         }
@@ -25,8 +23,8 @@ class UserController {
     
     static async register(req, res, next){
         try {
-            let { username, password, departement } = req.body
-            let createdUser = await User.create( { username, password, departement } )
+            let { username, password, departement, admin } = req.body
+            let createdUser = await User.create( { username, password, departement, admin } )
             res.status(201).json( { message: 'Success create user'} )
         } catch (error) {
             next(error)
