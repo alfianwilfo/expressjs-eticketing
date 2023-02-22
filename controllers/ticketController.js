@@ -2,9 +2,9 @@ let { Queue } = require("../models/index")
 class TicketController {
    static async createTicket(req, res, next){
         try {
-            let { username, departement } = req.user
+            let { username, from } = req.user
             let { message, to } = req.body
-            let createTicket = await Queue.create({ name: username, message, from: departement, to })
+            let createTicket = await Queue.create({ username, message, from, to })
             res.status(201).json({message : 'Success create new ticket'})
         } catch (error) {
            next(error)
@@ -13,7 +13,8 @@ class TicketController {
 
     static async getAllTicket(req, res, next){
         try {
-            let allTicket = await Queue.findAll()
+            let { from } = req.user
+            let allTicket = await Queue.findAll({where: {to: from}})
             res.json(allTicket)
         } catch (error) {
             next(error)
