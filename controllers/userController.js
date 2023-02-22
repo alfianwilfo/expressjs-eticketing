@@ -1,18 +1,23 @@
 let { User } = require("../models/")
 var bcrypt = require('bcryptjs');
-var salt = bcrypt.genSaltSync(10);
+var jwt = require('jsonwebtoken');
 
 class UserController {
     static async login(req, res, next){
         try {
         let { username, password } = req.body
         let findedUser = await User.findOne({ where: { username } })
-        console.log(findedUser, "????????");
         if (!findedUser) {
-            console.log("masok");
             throw { name: 'Forbidden'}
         }
-        let comparePassword = bcrypt.compareSync(password, findedUser.password); 
+        let comparePassword = bcrypt.compareSync(password, findedUser.password);
+        if (!comparePassword) {
+            throw { name: 'Forbidden'}
+            
+        }
+        let token = jwt.sign({id: findedUser.id}, process.env.TOKEN_SECRET)
+        res.json({ access_token: token })
+
         } catch (error) {
             next(error)
         }
