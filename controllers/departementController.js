@@ -10,3 +10,4 @@ class DepartementController {
     }
 }
 module.exports = DepartementController
+
