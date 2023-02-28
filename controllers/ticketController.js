@@ -1,5 +1,7 @@
 let { Queue, Departement } = require("../models/index")
 let { Op } = require("sequelize")
+let getPagination = require("../helpers/getPagination")
+let getPagingData = require("../helpers/getPagingData")
 class TicketController {
    static async createTicket(req, res, next){
         try {
@@ -16,8 +18,9 @@ class TicketController {
     static async getAllTicket(req, res, next){
         try {
             //filter by name, bymessage, by departement, by status, by requester
-            let { to, from, username } = req.query
-            let config = { where: {} }
+            let { to, from, username, status, offset: page } = req.query
+            const { limit, offset } = getPagination(page, 15);
+            let config = { where: {}, limit, offset }
             if (to) {
                 config.where.to = to
             }
@@ -27,9 +30,12 @@ class TicketController {
             if (username) {
                 config.where.username = { [Op.substring]: `${username}`}
             }
-            console.log(config);
-            let allTicket = await Queue.findAll(config)
-            res.json(allTicket)
+            if (status) {
+                config.where.status = status
+            }
+            let allTicket = await Queue.findAndCountAll(config)
+            const response = getPagingData(allTicket, page, limit);
+            res.json(response)
         } catch (error) {
             next(error)
         }
