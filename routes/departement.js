@@ -1,9 +1,10 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-let controller = require("../controllers/departementController")
-let authentication = require("../middlewares/authentication")
+let controller = require("../controllers/departement.controller");
+let authentication = require("../middlewares/authentication");
 
-router.get("/", authentication, controller.getAllDepartement)
+router
+  .get("/", authentication, controller.getAllDepartement)
+  .post("/", controller.createDepartement);
 
-
-module.exports = router
+module.exports = router;
