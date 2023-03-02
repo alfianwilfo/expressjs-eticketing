@@ -1,10 +1,7 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-let controller = require("../controllers/userController")
-let { validateInputRegisterUser, validateInputLoginUser } = require("../middlewares/validator")
+let controller = require("../controllers/user.controller");
 
-router.post("/login", validateInputLoginUser, controller.login)
-.post("/register", validateInputRegisterUser, controller.register)
- 
+router.post("/login", controller.login).post("/register", controller.register);
 
 module.exports = router;

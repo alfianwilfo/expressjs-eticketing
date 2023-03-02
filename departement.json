@@ -1,11 +1,14 @@
 [
-    {
-        "name": "HR"
-    },
-    {
-        "name": "GA"
-    },
-    {
-        "name": "Administration"
-    }
+  {
+    "name": "HR"
+  },
+  {
+    "name": "GA"
+  },
+  {
+    "name": "Administration"
+  },
+  {
+    "name": "IT"
+  }
 ]
